@@ -210,18 +210,18 @@ void insereLista2E(celula *LeInicio, int Valor)
 	celula *nova = (celula *)malloc(sizeof(celula)), *aux=LeInicio;
 	nova->conteudo = Valor;
 	
-	if(aux->conteudo == NULL)
-	{
-		nova->conteudo = Valor;
-	}
-	if(aux->prox->conteudo < nova->conteudo)
-	{
-		nova->prox = aux->prox;
-		aux->prox = nova;
-		ordenaListaE();
+	if(aux->prox == NULL){
 		
-
-	}else insereLista2E(aux->prox, Valor);
+		aux->prox = nova;
+//		ordenaListaE();
+	}else{
+		if(aux->prox->conteudo < nova->conteudo){
+			
+				nova->prox = aux->prox;
+				aux->prox = nova;
+		}
+		else insereLista2E(aux->prox, Valor);
+	}
 }
 
 int main()
@@ -250,18 +250,18 @@ int main()
     LeFim = buscaRemoveListaE(LeFim->conteudo, LeInicio);
 
     if (statusListaVaziaE() != 0)
-        printf("Lista encadeada dinâmica vazia!\n");
+        printf("Lista encadeada dinÃ¢mica vazia!\n");
     else
     {
-        printf("\nA Lista encadeada dinâmica tem %d elementos:", tamanhoListaE(LeInicio));
+        printf("\nA Lista encadeada dinÃ¢mica tem %d elementos:", tamanhoListaE(LeInicio));
         imprimeListaE(LeInicio);
     }
 
     if (statusListaVazia() != 0)
-        printf("\nLista estática vazia!\n");
+        printf("\nLista estÃ¡tica vazia!\n");
     else
     {
-        printf("\nA Lista estática tem %d elementos:", Fim - Inicio + 1);
+        printf("\nA Lista estÃ¡tica tem %d elementos:", Fim - Inicio + 1);
         imprimeLista();
         printf("\nOrganizando a lista dinamica em ordem crescente: ");
         ordenaListaE();
@@ -280,4 +280,3 @@ int main()
 
     return 0;
 }
-
